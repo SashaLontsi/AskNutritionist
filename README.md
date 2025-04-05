@@ -23,12 +23,10 @@ A containerized Next.js app built with TypeScript, TailwindCSS, and Docker.
  [Download Docker here](https://www.docker.com/products/docker-desktop)
 
 ## 2. Clone the repository
-```bash
 git clone https://github.com/YOUR-USERNAME/asknutritionist.git
 cd asknutritionist
 
 ## 3. Start the project with Docker
-```bash
 docker compose up
 
 This will build the Docker image (if not already built) and start the Next.js app inside the container.
