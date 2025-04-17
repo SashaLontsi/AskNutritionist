@@ -64,7 +64,7 @@ export default function Header() {
             {tabs.map((tab, index) => (
               <div
                 key={tab.name}
-                ref={(el) => (tabRefs.current[index] = el)}
+                ref={(el) => {(tabRefs.current[index] = el)}}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
