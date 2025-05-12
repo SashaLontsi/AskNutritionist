@@ -1,17 +1,32 @@
-# Dockerfile
-FROM node:18-bullseye
+# ---------- Install dependencies only when needed ----------
+FROM node:20-alpine3.18 AS builder
 
 WORKDIR /app
 
-# Copy package.json and lock first (for caching)
-COPY package.json package-lock.json ./
+COPY package.json ./
+COPY package-lock.json ./
 
-# Install deps (this is where lucide-react gets installed)
 RUN npm install
 
-# Then copy the rest of your app (src, public, etc.)
 COPY . .
 
+RUN npm run build
+
+# ---------- Final production image ----------
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Copy build artifacts
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+# Optional: expose port if needed (adjust if you're not using 3000)
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+# Start the Next.js app
+CMD ["npm", "start"]
+    
