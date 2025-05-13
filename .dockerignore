@@ -1,6 +1,22 @@
-
+# Ignore dependencies and build output
 node_modules
 .next
+dist
+
+# Ignore git and version control
+.git
+.gitignore
+
+# Ignore Docker config files themselves
 Dockerfile
 docker-compose.yml
-.env
+.dockerignore
+
+# Ignore IDE/editor folders
+.vscode
+.idea
+
+# Ignore logs and other junk
+*.log
+*.zip
+*.tmp
