@@ -1,13 +1,9 @@
-version: '3.8'
-
 services:
   web:
     build: .
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app
-      # Remove or comment out this line:
-      # - /app/node_modules
+    # volumes:
+    #   - .:/app
     environment:
       - NODE_ENV=development
